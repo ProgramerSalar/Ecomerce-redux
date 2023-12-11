@@ -5,47 +5,20 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/actions/action';
 import Toast from 'react-native-toast-message';
+import { useMessageAndErrorUser } from '../utils/hooks';
 
 
 const Login = () => {
 
-    const navigation = useNavigation()
+  const navigation = useNavigation()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
  
 
 
     const dispatch = useDispatch()
-    // loading = true
-    const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
-    console.log(isAuthenticated)
-
-  
-
-  useEffect(() => {
-    if(error){
-        Toast.show({
-            type:"error",
-            text1:error
-        })
-        dispatch({
-          type:"clearError"
-        })
-    }
-
-    if(message){
-      navigation.navigate("home")
-        Toast.show({
-            type:"success",
-            text1:message
-        })
-        dispatch({
-          type:"clearMessage"
-        })
-    }
-
+    const loading = useMessageAndErrorUser(navigation, dispatch, "home")
     
-  },[error,message, dispatch])
 
 
   const submitHandler = () => {
@@ -98,10 +71,14 @@ const Login = () => {
         justifyContent:'space-between'
       }}>
       <TouchableOpacity onPress={() => navigation.navigate("signUp")}>
-        <Text>SignUp?</Text>
+        <Text style={{
+          color:'white'
+        }}>SignUp?</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("forgetPassword")}>
-        <Text>ForgetPassword?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("forgotpassword")}>
+        <Text style={{
+          color:'white'
+        }}>ForgetPassword?</Text>
       </TouchableOpacity>
 
       </View>

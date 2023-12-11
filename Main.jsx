@@ -5,12 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Toast from 'react-native-toast-message'
 import Home from './src/Screens/Home'
 import Login from './src/Screens/Login'
-
-
-
-
-
-
+import Signup from './src/Screens/Signup'
+import CameraComponent from './src/Screens/CamerComponent'
+import ForgotPassword from './src/Screens/ForgotPassword'
 
 
 const Main = () => {
@@ -25,6 +22,9 @@ const Main = () => {
         <Stack.Group>
           <Stack.Screen name='home' component={Home} />
           <Stack.Screen name='login' component={Login} />
+          <Stack.Screen name='signUp' component={Signup} />
+          <Stack.Screen name='cameraComponent' component={CameraComponent} />
+          <Stack.Screen name='forgotpassword' component={ForgotPassword} />
         </Stack.Group>
       </Stack.Navigator>
 
