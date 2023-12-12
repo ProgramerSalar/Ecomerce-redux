@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Toast from 'react-native-toast-message'
@@ -9,9 +9,20 @@ import Signup from './src/Screens/Signup'
 import CameraComponent from './src/Screens/CamerComponent'
 import ForgotPassword from './src/Screens/ForgotPassword'
 import ResetPassword from './src/Screens/ResetPassword'
+import Profile from './src/Screens/Profile'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadUser } from './src/redux/actions/action'
 
 
 const Main = () => {
+
+  const dispatch = useDispatch()
+  const {user} = useSelector((state) => state.user)
+  console.log(user)
+
+  useEffect(() => {
+    dispatch(loadUser())
+  },[dispatch])
 
 
   const Stack = createNativeStackNavigator()
@@ -27,6 +38,7 @@ const Main = () => {
           <Stack.Screen name='cameraComponent' component={CameraComponent} />
           <Stack.Screen name='forgotpassword' component={ForgotPassword} />
           <Stack.Screen name='resetPassword' component={ResetPassword} />
+          <Stack.Screen name='profile' component={Profile} />
         </Stack.Group>
       </Stack.Navigator>
 

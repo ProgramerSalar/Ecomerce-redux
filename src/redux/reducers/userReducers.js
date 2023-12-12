@@ -19,6 +19,9 @@ export const userReducer = createReducer({}, (builder) => {
     .addCase("resetPasswordRequest", (state) => {
         state.loading = true
     })
+    .addCase("loadUserRequest", (state) => {
+        state.loading = true
+    })
 
 
 
@@ -46,6 +49,11 @@ export const userReducer = createReducer({}, (builder) => {
         state.isAuthenticated = true
         state.message = action.payload
     })
+    .addCase("loadUserSuccess",(state, action) => {
+        state.loading = false
+        state.isAuthenticated = true
+        state.user = action.payload
+    })
     
 
 
@@ -68,6 +76,11 @@ export const userReducer = createReducer({}, (builder) => {
         state.error = action.payload
     })
     .addCase("resetPasswordFail", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = false
+        state.error = action.payload
+    })
+    .addCase("loadUserFail", (state, action) => {
         state.loading = false
         state.isAuthenticated = false
         state.error = action.payload

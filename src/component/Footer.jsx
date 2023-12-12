@@ -8,9 +8,10 @@ import { useSelector } from 'react-redux'
 const Footer = ({ activeRoute = "home"}) => {
 
     const navigation = useNavigation()
-    const isAuthenticated = false
+    // const isAuthenticated = false
     
 
+    const {loading, isAuthenticated} = useSelector((state) => state.user)
 
     const Handler = () => {
 
