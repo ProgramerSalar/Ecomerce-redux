@@ -208,3 +208,40 @@ export const logout = () => async(dispatch) => {
     
   }
 }
+
+
+
+
+export const changePassword = (oldPassword, newPassword) => async(dispatch) => {
+
+  try{
+
+    dispatch({
+      type:"changepasswordRequest",
+      
+    })
+    const {data} = await axios.put(`${server}/changepassword`,{
+      oldPassword,
+      newPassword
+    },
+    {
+      headers:{
+        "Content-Type":"application/json"
+      },
+      withCredentials:true
+    }
+    )
+
+
+    dispatch({
+      type:"changePasswordSuccess",
+      payload:data.message,
+    })
+
+  }catch(error){
+    dispatch({
+      type:"changePasswordFail",
+      payload:error.response.data.message
+    })
+  }
+}

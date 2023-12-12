@@ -7,7 +7,7 @@ const ButtonBox = ({icon, text, handler, loading=false}) => {
     <View style={{
 
     }}>
-        <TouchableOpacity onPress={handler}>
+        <TouchableOpacity onPress={() => handler(text)}>
         <Avatar.Icon 
       size={50}
       style={{

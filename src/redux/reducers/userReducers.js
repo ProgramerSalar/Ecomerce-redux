@@ -25,6 +25,9 @@ export const userReducer = createReducer({}, (builder) => {
     .addCase("logoutRequest", (state) => {
         state.loading = true
     })
+    .addCase("changepasswordRequest", (state) => {
+        state.loading = true
+    })
 
 
 
@@ -63,7 +66,11 @@ export const userReducer = createReducer({}, (builder) => {
         state.message = action.payload
         state.user = null
     })
-    
+    .addCase("changePasswordSuccess", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = true
+        state.message = action.payload
+    })
 
 
 
@@ -96,6 +103,11 @@ export const userReducer = createReducer({}, (builder) => {
     })
     .addCase("logoutFail", (state, action) => {
         state.loading =false
+        state.isAuthenticated = true
+        state.error = action.payload
+    })
+    .addCase("changePasswordFail", (state, action) => {
+        state.loading = false
         state.isAuthenticated = true
         state.error = action.payload
     })

@@ -12,6 +12,7 @@ import ResetPassword from './src/Screens/ResetPassword'
 import Profile from './src/Screens/Profile'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './src/redux/actions/action'
+import ChangePassword from './src/Screens/ChangePassword'
 
 
 const Main = () => {
@@ -39,6 +40,7 @@ const Main = () => {
           <Stack.Screen name='forgotpassword' component={ForgotPassword} />
           <Stack.Screen name='resetPassword' component={ResetPassword} />
           <Stack.Screen name='profile' component={Profile} />
+          <Stack.Screen name='changepassword' component={ChangePassword} />
         </Stack.Group>
       </Stack.Navigator>
 

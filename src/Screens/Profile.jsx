@@ -27,7 +27,34 @@ const Profile = () => {
     }
 
 
-    const handler = () => {
+    const handler = (text) => {
+
+      switch(text){
+        case "Orders":
+          navigation.navigate("order")
+          break
+
+        case "Sign Out":
+          logoutHandler()
+          break
+
+        case "Admin":
+          navigation.navigate('adminpanel')
+          break
+
+
+        case "Profile":
+          navigation.navigate("updateprofile")
+          break
+
+        case "password":
+          navigation.navigate('changepassword')
+          break
+
+        
+      }
+
+
       
       
     }
@@ -46,79 +73,84 @@ const Profile = () => {
     }}>
 
         {
-            loading ? <Loader  /> : 
-            <>
-            <View style={{
-        backgroundColor:'white',
-        height:200,
-        width:400,
-        borderRadius:10,
-        margin:10,
-        padding:10
-        
-      }}>
-        <Avatar.Image  
-        size={100}
-        source={{
-            uri: avatar
-        }}
-        style={{
-            flexDirection:'row',
-            justifyContent:'center',
-            alignSelf:'center'
-        }}
-        />
-        <TouchableOpacity onPress={() => navigation.navigate('cameraComponent')}>
-            <Button>Change Photo</Button>
-        </TouchableOpacity>
-
-        <View style={{
-            flexDirection:'column',
-            alignSelf:'center'
-        }}>
-        <Text>{user?.name}</Text>
-        <Text>{user?.email}</Text>
-        </View>
-
-        <View style={{
+            loading ?
+            (<Loader  />)
+             : (
+              <>
+              <View style={{
+          backgroundColor:'white',
           height:200,
           width:400,
-          backgroundColor:'grey',
-          alignSelf:'center',
-          margin:20,
-          borderRadius:10
-          
+          borderRadius:10,
+          margin:10,
+          padding:10
           
         }}>
-
+          <Avatar.Image  
+          size={100}
+          source={{
+              uri: avatar
+          }}
+          style={{
+              flexDirection:'row',
+              justifyContent:'center',
+              alignSelf:'center'
+          }}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate('cameraComponent', {updateProfile:true})}>
+              <Button>Change Photo</Button>
+          </TouchableOpacity>
+  
           <View style={{
-            flexDirection:'row',
-            justifyContent:'space-between',
-            margin:10
+              flexDirection:'column',
+              alignSelf:'center'
           }}>
-          <ButtonBox icon={'format-list-bulleted-square'} text={'Orders'} handler={handler} />
-         <ButtonBox icon={'view-dashboard'} text={'Admin'} handler={handler} />
-         <ButtonBox icon={'pencil'} text={'Profile'} handler={handler} />
+          <Text>{user?.name}</Text>
+          <Text>{user?.email}</Text>
           </View>
+  
           <View style={{
-            flexDirection:'row',
-            justifyContent:'space-between',
-            margin:10
+            height:200,
+            width:400,
+            backgroundColor:'grey',
+            alignSelf:'center',
+            margin:20,
+            borderRadius:10
+            
+            
           }}>
-          <ButtonBox icon={'key-change'} text={'password'} handler={handler} />
-          <ButtonBox icon={'exit-to-app'} text={'Sign Out'} handler={logoutHandler} />
+  
+            <View style={{
+              flexDirection:'row',
+              justifyContent:'space-between',
+              margin:10
+            }}>
+            <ButtonBox icon={'format-list-bulleted-square'} text={'Orders'} handler={handler} />
+           <ButtonBox icon={'view-dashboard'} text={'Admin'} handler={handler} />
+           <ButtonBox icon={'pencil'} text={'Profile'} handler={handler} />
+            </View>
+            <View style={{
+              flexDirection:'row',
+              justifyContent:'space-between',
+              margin:10
+            }}>
+            <ButtonBox icon={'key-change'} text={'password'} handler={handler} />
+            <ButtonBox icon={'exit-to-app'} text={'Sign Out'} handler={handler} />
+            </View>
+  
+          
+  
+  
+  
           </View>
-
-        
-
-
-
+          
+  
+  
         </View>
-        
+              </>
 
-
-      </View>
-            </>
+             )
+           
         }
       
     </View>
