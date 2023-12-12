@@ -13,6 +13,12 @@ export const userReducer = createReducer({}, (builder) => {
     .addCase("registerRequest", (state) => {
         state.loading = true
     })
+    .addCase("forgotPasswordRequest", (state) => {
+        state.loading = true
+    })
+    .addCase("resetPasswordRequest", (state) => {
+        state.loading = true
+    })
 
 
 
@@ -26,6 +32,16 @@ export const userReducer = createReducer({}, (builder) => {
         state.message = action.payload
     })
     .addCase("registerSuccess", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = true
+        state.message = action.payload
+    })
+    .addCase("forgotPasswordSuccess", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = true
+        state.message = action.payload
+    })
+    .addCase("resetPasswordSuccess", (state, action) => {
         state.loading = false
         state.isAuthenticated = true
         state.message = action.payload
@@ -46,11 +62,22 @@ export const userReducer = createReducer({}, (builder) => {
         state.isAuthenticated = false
         state.error = action.payload
     })
+    .addCase("forgotPasswordFail", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = false
+        state.error = action.payload
+    })
+    .addCase("resetPasswordFail", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = false
+        state.error = action.payload
+    })
    
 
 
 
-    builder.addCase("clearError", (state) => {
+    builder
+    .addCase("clearError", (state) => {
         state.error = null;
       });
       builder.addCase("clearMessage", (state) => {

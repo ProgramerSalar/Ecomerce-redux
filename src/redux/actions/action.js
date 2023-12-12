@@ -76,3 +76,80 @@ export const register = (formData) => async (dispatch) => {
   
     }
   };
+
+
+
+
+
+  export const forgotPassword = (email) => async (dispatch) => {
+    try {
+      dispatch({
+        type: "forgotPasswordRequest",
+      });
+  
+      // Axios here
+      const { data } = await axios.post(
+        `${server}/forgetpassword`,
+        {
+          email,
+      
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials:true,
+        }
+      );
+  
+      dispatch({
+          type:"forgotPasswordSuccess",
+          payload:data.message,
+      })
+  
+    } catch (error) {
+      dispatch({
+          type:"forgotPasswordFail",
+          payload:error.response.data.message,
+      })
+  
+    }
+  };
+
+
+
+
+  export const resetPassword = (otp, password) => async (dispatch) => {
+    try {
+      dispatch({
+        type: "resetPasswordRequest",
+      });
+  
+      // Axios here
+      const { data } = await axios.put(
+        `${server}/forgetpassword`,
+        {
+          otp,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials:true,
+        }
+      );
+  
+      dispatch({
+          type:"resetPasswordSuccess",
+          payload:data.message,
+      })
+  
+    } catch (error) {
+      dispatch({
+          type:"resetPasswordFail",
+          payload:error.response.data.message,
+      })
+  
+    }
+  };

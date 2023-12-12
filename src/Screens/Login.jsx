@@ -25,13 +25,6 @@ const Login = () => {
     dispatch(login(email,password))
   };
 
-
-
-
-
-  
- 
-
   return (
     <View
       style={{

@@ -8,6 +8,7 @@ import Login from './src/Screens/Login'
 import Signup from './src/Screens/Signup'
 import CameraComponent from './src/Screens/CamerComponent'
 import ForgotPassword from './src/Screens/ForgotPassword'
+import ResetPassword from './src/Screens/ResetPassword'
 
 
 const Main = () => {
@@ -25,6 +26,7 @@ const Main = () => {
           <Stack.Screen name='signUp' component={Signup} />
           <Stack.Screen name='cameraComponent' component={CameraComponent} />
           <Stack.Screen name='forgotpassword' component={ForgotPassword} />
+          <Stack.Screen name='resetPassword' component={ResetPassword} />
         </Stack.Group>
       </Stack.Navigator>
 
