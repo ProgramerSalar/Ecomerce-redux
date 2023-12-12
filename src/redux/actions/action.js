@@ -285,3 +285,5 @@ export const updateProfile = (name, email) => async(dispatch) => {
     
   }
 } 
+
+

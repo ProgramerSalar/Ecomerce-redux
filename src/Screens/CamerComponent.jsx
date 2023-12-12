@@ -8,8 +8,8 @@ import { View, Text, TouchableOpacity,Pressable,
   import { RNCamera } from 'react-native-camera'
   import { useCamera } from 'react-native-camera-hooks'
   import { Avatar } from 'react-native-paper'
-  import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-  import * as ImagePicker from 'react-native-image-picker';
+  import {launchImageLibrary} from 'react-native-image-picker';
+
   
   
   
@@ -18,8 +18,7 @@ import { View, Text, TouchableOpacity,Pressable,
   
     const [{cameraRef}, {takePicture}] = useCamera(null)
     const [type, setType] = useState(RNCamera.Constants.Type.back)
-    const [hasPermission, setHasPermission] = useState(null)
-    const [selectedImage, setSelectedImage] = useState(null);
+  
   
   
   // galery
