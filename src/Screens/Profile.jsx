@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native'
 import { useMessageAndErrorUser } from '../utils/hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { defaultImg } from './Signup'
+import ButtonBox from '../component/ButtonBox'
+import { logout } from '../redux/actions/action'
 
 const Profile = () => {
 
@@ -18,6 +20,20 @@ const Profile = () => {
 
     const {user} = useSelector((state) => state.user)
     const [avatar, setAvatar] = useState(user?.avatar?user.avatar.url: defaultImg)
+
+
+    const logoutHandler = () => {
+      dispatch(logout())
+    }
+
+
+    const handler = () => {
+      
+      
+    }
+
+
+    
 
 
 
@@ -62,6 +78,41 @@ const Profile = () => {
         }}>
         <Text>{user?.name}</Text>
         <Text>{user?.email}</Text>
+        </View>
+
+        <View style={{
+          height:200,
+          width:400,
+          backgroundColor:'grey',
+          alignSelf:'center',
+          margin:20,
+          borderRadius:10
+          
+          
+        }}>
+
+          <View style={{
+            flexDirection:'row',
+            justifyContent:'space-between',
+            margin:10
+          }}>
+          <ButtonBox icon={'format-list-bulleted-square'} text={'Orders'} handler={handler} />
+         <ButtonBox icon={'view-dashboard'} text={'Admin'} handler={handler} />
+         <ButtonBox icon={'pencil'} text={'Profile'} handler={handler} />
+          </View>
+          <View style={{
+            flexDirection:'row',
+            justifyContent:'space-between',
+            margin:10
+          }}>
+          <ButtonBox icon={'key-change'} text={'password'} handler={handler} />
+          <ButtonBox icon={'exit-to-app'} text={'Sign Out'} handler={logoutHandler} />
+          </View>
+
+        
+
+
+
         </View>
         
 
