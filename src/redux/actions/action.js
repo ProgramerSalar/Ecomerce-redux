@@ -245,3 +245,43 @@ export const changePassword = (oldPassword, newPassword) => async(dispatch) => {
     })
   }
 }
+
+
+
+
+
+export const updateProfile = (name, email) => async(dispatch) => {
+
+  try{
+
+    dispatch({
+      type:"updateProfileRequest"
+    })
+
+    const {data} = await axios.put(`${server}/updateProfile`, 
+    {
+      name, 
+      email
+    },
+    {
+      headers:{
+        "Content-Type":"application/json"
+      },
+      withCredentials:true
+    }
+    )
+
+    dispatch({
+      type:"updateProfileSuccess",
+      payload:data.message
+    })
+
+  }catch(error){
+    dispatch({
+      type:"updateProfileFail",
+      payload:error.response.data.message
+    })
+
+    
+  }
+} 

@@ -28,6 +28,9 @@ export const userReducer = createReducer({}, (builder) => {
     .addCase("changepasswordRequest", (state) => {
         state.loading = true
     })
+    .addCase("updateProfileRequest", (state) => {
+        state.loading = true
+    })
 
 
 
@@ -71,6 +74,25 @@ export const userReducer = createReducer({}, (builder) => {
         state.isAuthenticated = true
         state.message = action.payload
     })
+    .addCase("updateProfileSuccess", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = true
+        state.message = action.payload
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,6 +133,25 @@ export const userReducer = createReducer({}, (builder) => {
         state.isAuthenticated = true
         state.error = action.payload
     })
+    .addCase("updateProfileFail", (state, action) => {
+        state.loading = false
+        state.isAuthenticated = true
+        state.error = action.payload
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
    
 
 
