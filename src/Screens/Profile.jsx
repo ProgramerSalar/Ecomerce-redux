@@ -10,6 +10,7 @@ import ButtonBox from '../component/ButtonBox'
 import { loadUser, logout } from '../redux/actions/action'
 import mime from "mime"
 import { updatePic } from '../redux/actions/otherAction'
+import Toast from 'react-native-toast-message'
 
 const Profile = () => {
 
@@ -22,14 +23,50 @@ const Profile = () => {
     const route = useRoute()
     const isFocused = useIsFocused();
     const dispatch = useDispatch()
-    const loading = useMessageAndErrorUser(navigation, dispatch, "login")
+    // const loading = useMessageAndErrorUser(navigation, dispatch, "login")
 
+    const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
+    console.log(isAuthenticated)
+
+    useEffect(() => {
+        if(error){
+            Toast.show({
+                type:"error",
+                text1:error
+            })
+            dispatch({
+              type:"clearError"
+            })
+        }
     
+        if(message){
+          navigation.reset({
+            index:0,
+            routes:[{"name":"login"}]
+          })
+            Toast.show({
+                type:"success",
+                text1:message
+            })
+            dispatch({
+              type:"clearMessage"
+            })
+        }
+        dispatch(loadUser())
+    
+        
+      },[error,message, dispatch])
 
 
     const logoutHandler = () => {
       dispatch(logout())
     }
+
+    
+
+
+
+
 
 
     const handler = (text) => {

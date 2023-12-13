@@ -14,6 +14,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './src/redux/actions/action'
 import ChangePassword from './src/Screens/ChangePassword'
 import UpdateProfile from './src/Screens/UpdateProfile'
+import AdminPanel from './src/Screens/Admin/AdminPanel'
+import NewProduct from './src/Screens/NewProduct'
+import NewCategory from './src/Screens/Admin/NewCategory'
 
 
 const Main = () => {
@@ -25,6 +28,11 @@ const Main = () => {
   useEffect(() => {
     dispatch(loadUser())
   },[dispatch])
+
+
+
+
+  
 
 
   const Stack = createNativeStackNavigator()
@@ -43,6 +51,10 @@ const Main = () => {
           <Stack.Screen name='profile' component={Profile} />
           <Stack.Screen name='changepassword' component={ChangePassword} />
           <Stack.Screen name='updateprofile' component={UpdateProfile} />
+          <Stack.Screen name='adminpanel' component={AdminPanel} />
+          <Stack.Screen name='newProduct' component={NewProduct} />
+          <Stack.Screen name='newCategory' component={NewCategory} />
+
         </Stack.Group>
       </Stack.Navigator>
 

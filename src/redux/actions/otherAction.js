@@ -10,7 +10,7 @@ export const updatePic = (formData) => async (dispatch) => {
         type: "updatePicRequest",
       });
   
-      const { data } = await axios.put(`${server}/updatepic`, formData, {
+      const { data } = await axios.put(`${server}/user/updatepic`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -28,3 +28,40 @@ export const updatePic = (formData) => async (dispatch) => {
       });
     }
   };
+
+
+export const createProduct = (formData) => async(dispatch) => {
+
+  try{
+    dispatch({
+      type:"addProductRequest"
+    })
+
+
+    const {data} = await axios.post(
+      `${server}/products/new`, 
+      formData,
+      {
+        headers:{
+          "Content-Type":"multipart/form-data"
+        },
+        withCredentials:true,
+      }
+    )
+
+
+
+    dispatch({
+      type:"addProductSuccess",
+      payload:data.message,
+    })
+
+
+    
+  }catch(error){
+    dispatch({
+      type:"addProductFail",
+      payload:error.response.data.message
+    })
+  }
+}

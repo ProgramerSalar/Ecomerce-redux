@@ -15,7 +15,7 @@ export const login = (email, password) => async (dispatch) => {
   
       // Axios here
       const { data } = await axios.post(
-        `${server}/login`,
+        `${server}/user/login`,
         {
           email,
           password,
@@ -53,7 +53,7 @@ export const register = (formData) => async (dispatch) => {
   
       // Axios here
       const { data } = await axios.post(
-        `${server}/signup`,
+        `${server}/user/signup`,
         formData,
         {
           headers: {
@@ -89,7 +89,7 @@ export const register = (formData) => async (dispatch) => {
   
       // Axios here
       const { data } = await axios.post(
-        `${server}/forgetpassword`,
+        `${server}/user/forgetpassword`,
         {
           email,
       
@@ -127,7 +127,7 @@ export const register = (formData) => async (dispatch) => {
   
       // Axios here
       const { data } = await axios.put(
-        `${server}/forgetpassword`,
+        `${server}/user/forgetpassword`,
         {
           otp,
           password,
@@ -164,7 +164,7 @@ export const loadUser = () => async(dispatch) => {
       type:"loadUserRequest"
     })
 
-    const {data} = await axios.get(`${server}/me`, {
+    const {data} = await axios.get(`${server}/user/me`, {
       withCredentials:true,
     })
 
@@ -191,7 +191,7 @@ export const logout = () => async(dispatch) => {
       type:"logoutRequest"
     })
 
-    const {data} = await axios.get(`${server}/logout`, {
+    const {data} = await axios.get(`${server}/user/logout`, {
       withCredentials:true
     })
 
@@ -220,7 +220,7 @@ export const changePassword = (oldPassword, newPassword) => async(dispatch) => {
       type:"changepasswordRequest",
       
     })
-    const {data} = await axios.put(`${server}/changepassword`,{
+    const {data} = await axios.put(`${server}/user/changepassword`,{
       oldPassword,
       newPassword
     },
@@ -258,7 +258,7 @@ export const updateProfile = (name, email) => async(dispatch) => {
       type:"updateProfileRequest"
     })
 
-    const {data} = await axios.put(`${server}/updateProfile`, 
+    const {data} = await axios.put(`${server}/user/updateProfile`, 
     {
       name, 
       email

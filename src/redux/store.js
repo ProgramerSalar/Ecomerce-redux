@@ -6,10 +6,14 @@ import { otherReducer } from "./reducers/otherReducers";
 
 
 
+
+
 export const store = configureStore({
     reducer:{
         user:userReducer,
         other:otherReducer,
+        
+
       
     }
 })
@@ -23,4 +27,4 @@ export const store = configureStore({
 
 
 
-export const server = "https://auth-1-gdgn.onrender.com/api/v1/user"
+export const server = "https://auth-1-gdgn.onrender.com/api/v1"

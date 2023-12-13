@@ -17,13 +17,46 @@ const Login = () => {
 
 
     const dispatch = useDispatch()
-    const loading = useMessageAndErrorUser(navigation, dispatch, "home")
+    // const loading = useMessageAndErrorUser(navigation, dispatch, "home")
     
 
 
   const submitHandler = () => {
     dispatch(login(email,password))
   };
+
+
+  const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
+    console.log(isAuthenticated)
+
+    useEffect(() => {
+        if(error){
+            Toast.show({
+                type:"error",
+                text1:error
+            })
+            dispatch({
+              type:"clearError"
+            })
+        }
+    
+        if(message){
+          navigation.reset({
+            index:0,
+            routes:[{"name":"home"}]
+          })
+            Toast.show({
+                type:"success",
+                text1:message
+            })
+            dispatch({
+              type:"clearMessage"
+            })
+        }
+        // dispatch(loadUser())
+    
+        
+      },[error,message, dispatch])
 
   return (
     <View

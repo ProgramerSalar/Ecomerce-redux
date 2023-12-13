@@ -10,6 +10,9 @@ export const otherReducer = createReducer({}, (builder) => {
     .addCase("updatePicRequest", (state) => {
         state.loading = true
     })
+    .addCase("addProductRequest", (state) => {
+        state.loading = true
+    })
 
 
 
@@ -18,6 +21,10 @@ export const otherReducer = createReducer({}, (builder) => {
     // Success
     builder
     .addCase("updatePicSuccess", (state, action) => {
+        state.loading = false
+        state.message = action.payload
+    })
+    .addCase("addProductSuccess", (state, action) => {
         state.loading = false
         state.message = action.payload
     })
@@ -41,6 +48,10 @@ export const otherReducer = createReducer({}, (builder) => {
     // Fail 
     builder
     .addCase("updatePicFail", (state, action) => {
+        state.loading = false
+        state.error = action.payload
+    })
+    .addCase("addProductFail", (state, action) => {
         state.loading = false
         state.error = action.payload
     })
