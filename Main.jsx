@@ -18,6 +18,7 @@ import AdminPanel from './src/Screens/Admin/AdminPanel'
 import NewProduct from './src/Screens/NewProduct'
 import NewCategory from './src/Screens/Admin/NewCategory'
 import { getAllProducts } from './src/redux/actions/productAction'
+import ProductDetails from './src/Screens/ProductDetails'
 
 
 const Main = () => {
@@ -30,7 +31,14 @@ const Main = () => {
   },[dispatch])
   // console.log("loadUser",loadUser())
 
+  const { products } = useSelector((state) => state.product);
 
+  // const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllProducts())
+ 
+  }, [dispatch])
 
 
 
@@ -58,6 +66,7 @@ const Main = () => {
           <Stack.Screen name='adminpanel' component={AdminPanel} />
           <Stack.Screen name='newProduct' component={NewProduct} />
           <Stack.Screen name='newCategory' component={NewCategory} />
+          <Stack.Screen name='Productdetails' component={ProductDetails} />
 
         </Stack.Group>
       </Stack.Navigator>

@@ -35,3 +35,33 @@ export const getAllProducts = () => async(dispatch) => {
         })
     }
 }
+
+
+
+export const getProductDetails = (id) => async(dispatch) => {
+
+    try{
+        dispatch({
+            type:"getProductDetailsRequest",
+        })
+
+        const {data} = await axios.get(
+            `${server}/products/single/${id}`,
+            {
+                withCredentials:true
+            }
+        )
+        console.log("product details Data", data)
+
+        dispatch({
+            type:"getProductDetailsSuccess",
+            payload: data.product
+        })
+
+    }catch(error){
+        dispatch({
+            type:"getProductDetailsFail",
+            payload: error.response.data.message
+        })
+    }
+}

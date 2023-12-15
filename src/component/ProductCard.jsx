@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 const ProductCard = ({
     name,
@@ -8,9 +9,11 @@ const ProductCard = ({
     id,
     i
 }) => {
+  const navigation = useNavigation()
 
     const productHandler = (id) => {
-        console.log(id)
+      navigation.navigate("Productdetails", {id})
+        
     }
 
 

@@ -5,7 +5,7 @@ import { Avatar, Button } from 'react-native-paper'
 import ProductCard from '../component/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../redux/actions/productAction'
-
+import { Image } from 'react-native'
 
 
 
@@ -23,7 +23,6 @@ const categories = [
 
 
 const Home = () => {
-  const { products } = useSelector((state) => state.product);
 
   
 
@@ -33,13 +32,15 @@ const Home = () => {
     setCategory(id)
   }
 
+  const { products } = useSelector((state) => state.product);
+  // console.log(products)
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getAllProducts())
+  // useEffect(() => {
+  //   dispatch(getAllProducts())
  
-  }, [dispatch])
+  // }, [dispatch])
 
 
   
@@ -139,7 +140,17 @@ const Home = () => {
           {/* <Text>{products.name}</Text> */}
           {/* <Text>"product", {products.name}</Text> */}
           <Text>Hello world</Text>
+          <Image 
+          style={{
+            height:100,
+            width:100
+          }}
+          
+          />
         </View>
+
+
+
       
 
 
