@@ -17,17 +17,21 @@ import UpdateProfile from './src/Screens/UpdateProfile'
 import AdminPanel from './src/Screens/Admin/AdminPanel'
 import NewProduct from './src/Screens/NewProduct'
 import NewCategory from './src/Screens/Admin/NewCategory'
+import { getAllProducts } from './src/redux/actions/productAction'
 
 
 const Main = () => {
 
   const dispatch = useDispatch()
   const {user} = useSelector((state) => state.user)
-  console.log(user)
-
   useEffect(() => {
     dispatch(loadUser())
+    
   },[dispatch])
+  // console.log("loadUser",loadUser())
+
+
+
 
 
 

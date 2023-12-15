@@ -15,6 +15,7 @@ import Toast from 'react-native-toast-message'
 const Profile = () => {
 
   const {user} = useSelector((state) => state.user)
+  
     const [avatar, setAvatar] = useState(defaultImg)
 
     // const loading = false
@@ -23,7 +24,7 @@ const Profile = () => {
     const route = useRoute()
     const isFocused = useIsFocused();
     const dispatch = useDispatch()
-    // const loading = useMessageAndErrorUser(navigation, dispatch, "login")
+    
 
     const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
     console.log(isAuthenticated)
@@ -122,12 +123,18 @@ const Profile = () => {
       dispatch(loadUser());
     }, [route.params, dispatch, isFocused]);
 
+   
+    
+
+
     useEffect(() => {
       if (user?.avatar) {
         setAvatar(user.avatar.url);
       }
     }, [user]);
-    
+
+
+ 
 
 
 

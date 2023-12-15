@@ -2,7 +2,10 @@ import {createReducer} from "@reduxjs/toolkit"
 
 
 
-export const userReducer = createReducer({}, (builder) => {
+export const userReducer = createReducer({
+    products:[],
+    product:{},
+}, (builder) => {
 
 
     // Request
