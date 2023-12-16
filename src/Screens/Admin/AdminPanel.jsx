@@ -1,65 +1,139 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Loader from '../../component/Loader'
-import ButtonBox from '../../component/ButtonBox'
-import { useNavigation } from '@react-navigation/native'
+import {View, Text, ScrollView} from 'react-native';
+import React from 'react';
+import Loader from '../../component/Loader';
+import ButtonBox from '../../component/ButtonBox';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import ProductListItem from '../../component/ProductListItem';
+import { useAdminProducts } from '../../utils/hooks';
+import { useDispatch } from 'react-redux';
+
+// export const products = [
+//   {
+//     price: 435,
+//     name: 'shoes',
+//     stock: 34,
+//     _id: '1',
+//     category: 'rohan',
+//     images: [
+//       {
+//         url: 'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg',
+//       },
+//     ],
+//   }
+
+// ];
 
 const AdminPanel = () => {
-    const loading = false
-    const navigation = useNavigation()
-    const navigationHandler = (text) => {
-        switch(text){
-            case "Product":
-                navigation.navigate("newProduct")
-                break;
+  // const loading = false;
+  const navigation = useNavigation();
+  const navigationHandler = text => {
+    switch (text) {
+      case 'Product':
+        navigation.navigate('newProduct');
+        break;
 
-            case "All Orders":
-                navigation.navigate("allOrders")
-                break;
+      case 'All Orders':
+        navigation.navigate('allOrders');
+        break;
 
-            case "Category":
-                navigation.navigate("newCategory")
-                break;
-        }
+      case 'Category':
+        navigation.navigate('newCategory');
+        break;
     }
+  };
+
+
+
+  const dispatch = useDispatch()
+  const isFocused = useIsFocused()
+  const {loading, products, inStock, outofStock} = useAdminProducts(
+    dispatch,
+    isFocused
+  )
+
+
+
   return (
     <>
-    <View style={{
-        flex:1,
-        backgroundColor:'green'
-    }}>
-        {
-            loading ? (
-                <Loader />
-            ) : (
-                <>
-                <View style={{
-                    alignSelf:'center',
-                    
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'green',
+        }}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <View
+              style={{
+                alignSelf: 'center',
+              }}>
+              <View
+                style={{
+                  height: 150,
+                  width: 400,
+                  backgroundColor: 'white',
+                  borderRadius: 10,
+                  margin: 10,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  padding: 20,
                 }}>
-                    <View style={{
-                        height:150,
-                        width:400,
-                        backgroundColor:'white',
-                        borderRadius:10,
-                        margin:10,
-                        flexDirection:'row',
-                        justifyContent:'space-between',
-                        padding:20
-                    }}>
-                       
-                        <ButtonBox icon={'card-plus'} text={'Product'} handler={navigationHandler} />
-                        <ButtonBox icon={'stack-exchange'} text={'All Orders'} handler={navigationHandler} />
-                        <ButtonBox icon={'plus'} text={'Category'} handler={navigationHandler} />
-                    </View>
-                </View>
-                </>
-            )
-        }
-    </View>
-    </>
- 
-  )
-}
+                <ButtonBox
+                  icon={'card-plus'}
+                  text={'Product'}
+                  handler={navigationHandler}
+                />
+                <ButtonBox
+                  icon={'stack-exchange'}
+                  text={'All Orders'}
+                  handler={navigationHandler}
+                />
+                <ButtonBox
+                  icon={'plus'}
+                  text={'Category'}
+                  handler={navigationHandler}
+                />
+              </View>
+              <View style={{
+            backgroundColor:'white',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            padding:10,
+            borderRadius:10,
+            margin:10,
+        }}>
+            <Text style={{ fontWeight:'bold' }}>Image</Text>
+            <Text style={{ fontWeight:'bold' }}>Name</Text>
+            <Text style={{ fontWeight:'bold' }}>Price</Text>
+            <Text style={{ fontWeight:'bold' }}>Category</Text>
+            <Text style={{ fontWeight:'bold' }}>Stock</Text>
+        </View>
+              <ScrollView>
+                {
+                    products.map((item, index) => (
+                        <ProductListItem  
+                        id={item._id}
+                        key={item._id}
+                        i={index}
+                        name={item.name}
+                        stock={item.stock}
+                        category={item.category?.category}
+                        price={item.price}
+                        imgSrc={item.images[0].url}
+                        />
+                    ))
+                }
+              </ScrollView>
 
-export default AdminPanel
+
+
+            </View>
+          </>
+        )}
+      </View>
+    </>
+  );
+};
+
+export default AdminPanel;

@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {loadUser} from '../redux/actions/action';
 import axios from 'axios';
 import { server } from '../redux/store';
+import { getAdminProducts } from '../redux/actions/productAction';
 
 export const useMessageAndErrorUser = (
   navigation,
@@ -96,4 +97,33 @@ export const useSetCategories = (setCategories, isFocused) => {
         });
       });
   }, [isFocused]);
+};
+
+
+
+export const useAdminProducts = (dispatch, isFocused) => {
+  const { products, inStock, outOfStock, error, loading } = useSelector(
+    (state) => state.product
+  );
+
+  useEffect(() => {
+    if (error) {
+      Toast.show({
+        type: "error",
+        text1: error,
+      });
+      dispatch({
+        type: "clearError",
+      });
+    }
+
+    dispatch(getAdminProducts());
+  }, [dispatch, isFocused, error]);
+
+  return {
+    products,
+    inStock,
+    outOfStock,
+    loading,
+  };
 };

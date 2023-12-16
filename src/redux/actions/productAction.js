@@ -65,3 +65,32 @@ export const getProductDetails = (id) => async(dispatch) => {
         })
     }
 }
+
+
+
+
+export const getAdminProducts = () => async(dispatch) => {
+
+    try{
+        dispatch({
+            type:"getAdminProductRequest"
+        })
+
+
+        const {data} = await axios.get(`${server}/products/admin`, {
+            withCredentials:true
+        })
+
+        dispatch({
+            type:"getAdminProductSuccess",
+            payload:data,
+        })
+
+    }catch(error){
+        dispatch({
+            type:"getProductDetailsFail",
+            payload: error.response.data.message
+        })
+    }
+
+}

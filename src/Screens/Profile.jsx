@@ -24,6 +24,7 @@ const Profile = () => {
     const route = useRoute()
     const isFocused = useIsFocused();
     const dispatch = useDispatch()
+    const isAdmin = true 
     
 
     const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
