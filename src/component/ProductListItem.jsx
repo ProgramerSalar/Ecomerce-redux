@@ -4,15 +4,13 @@ import { useNavigation } from '@react-navigation/native'
 import MyModal from './MyModal'
 
 const ProductListItem = ({
-    name,id, i, stock, category, price, imgSrc
+    name,id, i, stock, category, price, imgSrc, 
+    deleteHandler,
+    navigation
 }) => {
 
     const [openModal, setOpenModal] = useState(false)
-    const navigation = useNavigation()
-    const deleteHandler = () => {
-        console.log('delete')
-    }
-
+ 
 
   return (
     <>

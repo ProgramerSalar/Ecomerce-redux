@@ -4,8 +4,10 @@ import Loader from '../../component/Loader';
 import ButtonBox from '../../component/ButtonBox';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import ProductListItem from '../../component/ProductListItem';
-import { useAdminProducts } from '../../utils/hooks';
+import { useAdminProducts, useMessageAndErrorOther } from '../../utils/hooks';
 import { useDispatch } from 'react-redux';
+import { deleteProduct } from '../../redux/actions/otherAction';
+import { getAdminProducts } from '../../redux/actions/productAction';
 
 // export const products = [
 //   {
@@ -41,6 +43,12 @@ const AdminPanel = () => {
         break;
     }
   };
+  
+
+  const deleteHandler = (id) => {
+    dispatch(deleteProduct(id))
+
+  }
 
 
 
@@ -51,6 +59,12 @@ const AdminPanel = () => {
     isFocused
   )
 
+  const loadingDelete = useMessageAndErrorOther(
+    dispatch,
+    null,
+    null,
+    getAdminProducts
+  )
 
 
   return (
@@ -110,7 +124,7 @@ const AdminPanel = () => {
             <Text style={{ fontWeight:'bold' }}>Stock</Text>
         </View>
               <ScrollView>
-                {
+                { !loadingDelete &&
                     products.map((item, index) => (
                         <ProductListItem  
                         id={item._id}
@@ -121,6 +135,8 @@ const AdminPanel = () => {
                         category={item.category?.category}
                         price={item.price}
                         imgSrc={item.images[0].url}
+                        deleteHandler={deleteHandler}
+                        navigation = {navigation}
                         />
                     ))
                 }
