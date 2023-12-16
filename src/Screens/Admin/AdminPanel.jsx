@@ -65,6 +65,7 @@ const AdminPanel = () => {
     null,
     getAdminProducts
   )
+  
 
 
   return (

@@ -1,8 +1,13 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import Loader from '../component/Loader';
 import SelectComponent from '../component/SelectComponent';
+import { useMessageAndErrorOther, useSetCategories } from '../utils/hooks';
+import { useIsFocused } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProduct } from '../redux/actions/otherAction';
+import { getProductDetails } from '../redux/actions/productAction';
 
 
 const UpdateProduct = ({ route, navigation }) => {
@@ -17,35 +22,44 @@ const UpdateProduct = ({ route, navigation }) => {
     const [stock, setStock] = useState("");
     const [category, setCategory] = useState("");
     const [categoryID, setCategoryID] = useState("");
-    const [categories, setCategories] = useState([
-        {"_id":"1", category:"laptop"},
-        {"_id":"2", category:"laptop"},
-        {"_id":"3", category:"laptop"},
-        {"_id":"4", category:"laptop"},
-        {"_id":"5", category:"laptop"},
-    ]);
+    const [categories, setCategories] = useState([]);
 
-    const loading = false
-    const loadingOther = false
+    const isFocused = useIsFocused()
+    useSetCategories(setCategories, isFocused)
+    const {product, loading} = useSelector((state) => state.product)
+
     const submitHandler = () => { 
-        console.log(name,description,price,stock,categoryID)
+        dispatch(updateProduct(id, name, description, price, stock, categoryID));
     }
 
-    const images = [
-        {
-         
-          url: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg",
-          _id: '1',
-        },
-        {
-          _id: '2',
-          url: "https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-        },
-        {
-          _id: '3',
-          url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-        },
-      ]
+
+    const dispatch = useDispatch()
+    const loadingOther = useMessageAndErrorOther(
+        dispatch,
+        navigation,
+        "adminpanel"
+        
+    )
+
+    useEffect(() => {
+        dispatch(getProductDetails(id));
+      }, [dispatch, id, isFocused]);
+    
+      useEffect(() => {
+        if (product) {
+          setName(product.name);
+          setDescription(product.description);
+          setPrice(String(product.price));
+          setStock(String(product.stock));
+          setCategory(product.category?.category);
+          setCategoryID(product.category?._id);
+        }
+      }, [product]);
+
+
+  
+
+
 
 
     return (
@@ -123,7 +137,9 @@ const UpdateProduct = ({ route, navigation }) => {
                                     textAlignVertical: "center",
                                     borderRadius: 3,
                                     height:50,
-                                    margin:30
+                                    margin:30,
+                                    fontWeight:'bold',
+                                    color:'black'
                                 }}
                                 onPress={() => setVisible(true)}
                             >

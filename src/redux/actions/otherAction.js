@@ -154,11 +154,53 @@ export const deleteProduct = (productId) => async (dispatch) => {
     })
 
 
-    
+
 
   }catch(error){
     dispatch({
       type:"deleteProductFail"
+    })
+  }
+}
+
+
+
+
+export const updateProduct = (id, name, description, price, stock, category) => async(dispatch) => {
+  try{
+    dispatch({
+      type:"updateProductRequest"
+    })
+
+    const {data} = await axios.put(
+      `${server}/products/single/${id}`,
+      {
+        name,
+        description,
+        price,
+        stock,
+        category
+      },
+      {
+        headers:{
+          "Content-Type":"application/json"
+        },
+        withCredentials:true
+      }
+    )
+
+
+    dispatch({
+      type:"updateProductSuccess",
+      payload: data.message
+    })
+
+
+
+  }catch(error){
+    dispatch({
+      type:"updateProductFail",
+      payload:error.response.data.message
     })
   }
 }

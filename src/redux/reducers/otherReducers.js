@@ -22,6 +22,9 @@ export const otherReducer = createReducer({}, (builder) => {
     .addCase("deleteProductRequest", (state) => {
         state.loading = true
     })
+    .addCase("updateProductRequest", (state) => {
+        state.loading = true
+    })
 
 
 
@@ -46,6 +49,10 @@ export const otherReducer = createReducer({}, (builder) => {
         state.message = action.payload
     })
     .addCase("deleteProductSuccess", (state, action) => {
+        state.loading = false
+        state.message = action.payload
+    })
+    .addCase("updateProductSuccess", (state, action) => {
         state.loading = false
         state.message = action.payload
     })
@@ -87,6 +94,10 @@ export const otherReducer = createReducer({}, (builder) => {
         state.error = action.payload
     })
     .addCase("deleteProductFail", (state, action) => {
+        state.loading = false
+        state.error = action.payload
+    })
+    .addCase("updateProductFail", (state, action) => {
         state.loading = false
         state.error = action.payload
     })
