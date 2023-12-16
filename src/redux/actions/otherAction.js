@@ -236,10 +236,6 @@ export const updateProductImage = (productId, formData) => async (dispatch) => {
   }
 };
 
-
-
-
-
 export const deleteProductImage = (productId, imageId) => async (dispatch) => {
   try {
     dispatch({

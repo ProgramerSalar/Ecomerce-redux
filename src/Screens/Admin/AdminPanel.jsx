@@ -9,21 +9,7 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../redux/actions/otherAction';
 import { getAdminProducts } from '../../redux/actions/productAction';
 
-// export const products = [
-//   {
-//     price: 435,
-//     name: 'shoes',
-//     stock: 34,
-//     _id: '1',
-//     category: 'rohan',
-//     images: [
-//       {
-//         url: 'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg',
-//       },
-//     ],
-//   }
 
-// ];
 
 const AdminPanel = () => {
   // const loading = false;

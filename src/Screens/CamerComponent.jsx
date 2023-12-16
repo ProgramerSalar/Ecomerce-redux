@@ -35,7 +35,7 @@ const CameraComponent = ({navigation, route}) => {
         // then come to newproduct page
         image: data.assets[0].uri, // with image
       });
-    if (route.params?.updateproduct)
+    if (route.params?.ProductImages)
       return navigation.navigate('productimages', {
         image: data.assets[0].uri,
       });
@@ -43,10 +43,10 @@ const CameraComponent = ({navigation, route}) => {
       return navigation.navigate('profile', {
         image: data.assets[0].uri,
       });
-    else
-      return navigation.navigate('signUp', {
-        image: data.assets[0].uri,
-      });
+    // else
+    //   return navigation.navigate('signUp', {
+    //     image: data.assets[0].uri,
+    //   });
   };
 
   // click photo
@@ -60,18 +60,18 @@ const CameraComponent = ({navigation, route}) => {
         image: data.uri,
       });
 
-    if (route.params?.updateproduct)
+    if (route.params?.ProductImages)
       return navigation.navigate('productimages', {
         image: data.uri,
       });
-    if (route.params?.updateProfile)
+    if (route.params?.UpdateProfile)
       return navigation.navigate('profile', {
         image: data.uri,
       });
-    else
-      return navigation.navigate('signUp', {
-        image: data.uri,
-      });
+    // else
+    //   return navigation.navigate('signUp', {
+    //     image: data.uri,
+    //   });
   };
 
   return (
@@ -116,11 +116,7 @@ const CameraComponent = ({navigation, route}) => {
   );
 };
 
-const MyIcon = icon => {
-  <TouchableOpacity>
-    <Avatar.Icon icon={icon} />
-  </TouchableOpacity>;
-};
+
 
 export default CameraComponent;
 

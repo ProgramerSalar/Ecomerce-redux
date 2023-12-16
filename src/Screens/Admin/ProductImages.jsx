@@ -6,43 +6,27 @@ import mime from "mime"
 import { deleteProductImage, updateProductImage } from '../../redux/actions/otherAction';
 import { useMessageAndErrorOther } from '../../utils/hooks';
 import ImageCard from '../../component/ImageCard';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const ProductImages = ({navigation, route}) => {
 
+    
     const [images] = useState(route.params.images);
     const [productId] = useState(route.params.id);
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState();
     const [imageChanged, setImageChanged] = useState(false);
-  
-    const dispatch = useDispatch();
-  
-    const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel");
-  
     
-  
-    const submitHandler = () => {
-      const myForm = new FormData();
-  
-      myForm.append("file", {
-        uri: image,
-        type: mime.getType(image),
-        name: image.split("/").pop(),
-      });
-  
-      dispatch(updateProductImage(productId, myForm));
-    };
-  
+    const deleteHandler = () => {}
+    const submitHandler = () => {}
+    const loading = false
+
+
     useEffect(() => {
-      if (route.params?.image) {
-        setImage(route.params.image);
-        setImageChanged(true);
-      }
-    }, [route.params]);
-
-
-    const deleteHandler = (imageId) => {
-      dispatch(deleteProductImage(productId, imageId));
-    };
+      if (route.params?.image) setImage(route.params.image)
+        // dispatch update image 
+    }, [route.params])   // only one 
+  
+  
 
     
   return (
@@ -93,6 +77,7 @@ const ProductImages = ({navigation, route}) => {
           }}
           source={{ uri: image }}
         />
+
 
         <View
           style={{
