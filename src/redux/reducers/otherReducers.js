@@ -25,6 +25,12 @@ export const otherReducer = createReducer({}, (builder) => {
     .addCase("updateProductRequest", (state) => {
         state.loading = true
     })
+    .addCase("updateProductImageRequest", (state) => {
+        state.loading = true;
+      })
+    .addCase("deleteProductImageRequest", (state) => {
+        state.loading = true;
+      })
 
 
 
@@ -56,6 +62,14 @@ export const otherReducer = createReducer({}, (builder) => {
         state.loading = false
         state.message = action.payload
     })
+    .addCase("updateProductImageSuccess", (state, action) => {
+        state.loading = false;
+        state.message = action.payload;
+      })
+    .addCase("deleteProductImageSuccess", (state, action) => {
+        state.loading = false;
+        state.message = action.payload;
+      })
   
    
 
@@ -101,6 +115,14 @@ export const otherReducer = createReducer({}, (builder) => {
         state.loading = false
         state.error = action.payload
     })
+    .addCase("updateProductImageFail", (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+    .addCase("deleteProductImageFail", (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
 
 
 

@@ -20,6 +20,7 @@ import NewCategory from './src/Screens/Admin/NewCategory'
 import { getAllProducts } from './src/redux/actions/productAction'
 import ProductDetails from './src/Screens/ProductDetails'
 import UpdateProduct from './src/Screens/UpdateProduct'
+import ProductImages from './src/Screens/Admin/ProductImages'
 
 
 const Main = () => {
@@ -69,6 +70,7 @@ const Main = () => {
           <Stack.Screen name='newCategory' component={NewCategory} />
           <Stack.Screen name='Productdetails' component={ProductDetails} />
           <Stack.Screen name='updateproduct' component={UpdateProduct} />
+          <Stack.Screen name='productimages' component={ProductImages} />
 
         </Stack.Group>
       </Stack.Navigator>
