@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMessageAndErrorOther } from '../utils/hooks';
 import { placeOrder } from '../redux/actions/otherAction';
 import Toast from 'react-native-toast-message';
+import { useStripe } from '@stripe/stripe-react-native';
 
 
 const Payment = ({ navigation, route }) => {
@@ -16,6 +17,7 @@ const Payment = ({ navigation, route }) => {
   
 
   const dispatch = useDispatch()
+  const stripe = useStripe()
   
   const { isAuthenticated, user} = useSelector((state) => state.user)
   // console.log(user)

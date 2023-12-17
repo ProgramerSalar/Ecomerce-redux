@@ -24,6 +24,8 @@ import ProductImages from './src/Screens/Admin/ProductImages'
 import Cart from './src/Screens/Cart'
 import ConfirmOrder from './src/Screens/ConfirmOrder'
 import Payment from './src/Screens/Payment'
+import Orders from './src/Screens/Orders'
+import AdminOrder from './src/Screens/Admin/AdminOrder'
 
 
 
@@ -78,6 +80,8 @@ const Main = () => {
           <Stack.Screen name='cart' component={Cart} />
           <Stack.Screen name='confirmorder' component={ConfirmOrder} />
           <Stack.Screen name='payment' component={Payment} />
+          <Stack.Screen name='order' component={Orders} />
+          <Stack.Screen name='adminorders' component={AdminOrder} />
 
         </Stack.Group>
       </Stack.Navigator>
