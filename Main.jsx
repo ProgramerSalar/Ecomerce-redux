@@ -22,6 +22,7 @@ import ProductDetails from './src/Screens/ProductDetails'
 import UpdateProduct from './src/Screens/UpdateProduct'
 import ProductImages from './src/Screens/Admin/ProductImages'
 import Cart from './src/Screens/Cart'
+import ConfirmOrder from './src/Screens/ConfirmOrder'
 
 
 
@@ -74,6 +75,7 @@ const Main = () => {
           <Stack.Screen name='updateproduct' component={UpdateProduct} />
           <Stack.Screen name='productimages' component={ProductImages} />
           <Stack.Screen name='cart' component={Cart} />
+          <Stack.Screen name='confirmorder' component={ConfirmOrder} />
 
         </Stack.Group>
       </Stack.Navigator>
