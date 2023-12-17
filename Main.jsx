@@ -21,6 +21,8 @@ import { getAllProducts } from './src/redux/actions/productAction'
 import ProductDetails from './src/Screens/ProductDetails'
 import UpdateProduct from './src/Screens/UpdateProduct'
 import ProductImages from './src/Screens/Admin/ProductImages'
+import Cart from './src/Screens/Cart'
+
 
 
 const Main = () => {
@@ -71,6 +73,7 @@ const Main = () => {
           <Stack.Screen name='Productdetails' component={ProductDetails} />
           <Stack.Screen name='updateproduct' component={UpdateProduct} />
           <Stack.Screen name='productimages' component={ProductImages} />
+          <Stack.Screen name='cart' component={Cart} />
 
         </Stack.Group>
       </Stack.Navigator>
