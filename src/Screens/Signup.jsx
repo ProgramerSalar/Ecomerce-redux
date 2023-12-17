@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Avatar, Button, TextInput } from 'react-native-paper'
 import { useNavigation, useRoute } from '@react-navigation/native'
@@ -16,6 +16,11 @@ const Signup = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [address, setAddress] = useState("")
+    const [city, setCity] = useState("")
+    const [country, setCountry] = useState("")
+    const [pinCode, setPinCode] = useState("")
+    const [role, setRole] = useState("")
     const route = useRoute()
 
     const submitHandler = () => {
@@ -25,6 +30,11 @@ const Signup = () => {
         myForm.append("name", name)
         myForm.append("email", email)
         myForm.append("password", password)
+        myForm.append("address", address)
+        myForm.append("city", city)
+        myForm.append("country", country)
+        myForm.append("pinCode", pinCode)
+        myForm.append("role", role)
 
         if (avatar !== "" ){
             myForm.append("file",{
@@ -81,13 +91,14 @@ const Signup = () => {
         },[error,message, dispatch])
 
   return (
-    <View style={{
+    
+      <ScrollView style={{
         flex:1,
         backgroundColor:'green'
     }}>
 
          {/* Image  */}
-      <View>
+         <View>
         <Avatar.Image
           style={{
             alignItems: 'center',
@@ -112,6 +123,11 @@ const Signup = () => {
             <TextInput value={name} onChangeText={setName} placeholder='Enter name' />
             <TextInput value={email} onChangeText={setEmail} placeholder='Enter email' />
             <TextInput value={password} onChangeText={setPassword} placeholder='Enter Password' />
+            <TextInput value={address} onChangeText={setAddress} placeholder='Enter Address' />
+            <TextInput value={city} onChangeText={setCity} placeholder='Enter City' />
+            <TextInput value={country} onChangeText={setCountry} placeholder='Enter Country' />
+            <TextInput value={pinCode} onChangeText={setPinCode} placeholder='Enter PinCode' />
+            <TextInput value={role} onChangeText={setRole} placeholder='Enter role [admin or user]' />
 
             <TouchableOpacity onPress={submitHandler}>
             <Button
@@ -142,11 +158,14 @@ const Signup = () => {
         </View>
         
       
+        
+      </ScrollView>
 
 
 
 
-    </View>
+
+    
   )
 }
 

@@ -43,10 +43,10 @@ const CameraComponent = ({navigation, route}) => {
       return navigation.navigate('profile', {
         image: data.assets[0].uri,
       });
-    // else
-    //   return navigation.navigate('signUp', {
-    //     image: data.assets[0].uri,
-    //   });
+    else
+      return navigation.navigate('signUp', {
+        image: data.assets[0].uri,
+      });
   };
 
   // click photo
@@ -68,10 +68,10 @@ const CameraComponent = ({navigation, route}) => {
       return navigation.navigate('profile', {
         image: data.uri,
       });
-    // else
-    //   return navigation.navigate('signUp', {
-    //     image: data.uri,
-    //   });
+    else
+      return navigation.navigate('signUp', {
+        image: data.uri,
+      });
   };
 
   return (
