@@ -253,7 +253,10 @@ export const changePassword = (oldPassword, newPassword) => async(dispatch) => {
 
 
 
-export const updateProfile = (name, email) => async(dispatch) => {
+export const updateProfile = (name, email,address,
+  city,
+  country,
+  pinCode ) => async(dispatch) => {
 
   try{
 
@@ -264,7 +267,11 @@ export const updateProfile = (name, email) => async(dispatch) => {
     const {data} = await axios.put(`${server}/user/updateProfile`, 
     {
       name, 
-      email
+      email,
+      address,
+      city,
+      country,
+      pinCode
     },
     {
       headers:{

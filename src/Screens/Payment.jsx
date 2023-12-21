@@ -18,6 +18,10 @@ const Payment = ({ navigation, route }) => {
 
   const dispatch = useDispatch()
   const stripe = useStripe()
+
+  const redirectToLogin = () => {
+    navigation.navigate('login')
+  }
   
   const { isAuthenticated, user} = useSelector((state) => state.user)
   // console.log(user)

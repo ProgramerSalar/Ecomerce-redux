@@ -10,12 +10,19 @@ const UpdateProfile = () => {
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [address, setAddress] = useState("")
+    const [city, setCity] = useState("")
+    const [country, setCountry] = useState("")
+    const [pinCode, setPinCode] = useState("")
     // const loading = false
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const loading = useMessageAndErrorUser(navigation, dispatch, "profile")
     const updateProfileHandler = () => {
-        dispatch(updateProfile(name,email))
+        dispatch(updateProfile(name,email,address,
+            city,
+            country,
+            pinCode))
     }
 
 
@@ -32,6 +39,10 @@ const UpdateProfile = () => {
         <View>
             <TextInput value={name} onChangeText={setName} placeholder='Enter Name' />
             <TextInput value={email} onChangeText={setEmail} placeholder='Enter Email' />
+            <TextInput value={address} onChangeText={setAddress} placeholder='Enter Address' />
+            <TextInput value={city} onChangeText={setCity} placeholder='Enter City' />
+            <TextInput value={country} onChangeText={setCountry} placeholder='Enter Country' />
+            <TextInput value={pinCode} onChangeText={setPinCode} placeholder='Enter PinCode' />
         </View>
         <TouchableOpacity onPress={updateProfileHandler}>
             <Button
